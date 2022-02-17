@@ -29,6 +29,12 @@ type DokafileVisitor interface {
 	// Visit a parse tree produced by DokafileParser#if_instruction.
 	VisitIf_instruction(ctx *If_instructionContext) interface{}
 
+	// Visit a parse tree produced by DokafileParser#elif_instruction.
+	VisitElif_instruction(ctx *Elif_instructionContext) interface{}
+
+	// Visit a parse tree produced by DokafileParser#else_instruction.
+	VisitElse_instruction(ctx *Else_instructionContext) interface{}
+
 	// Visit a parse tree produced by DokafileParser#if_expression.
 	VisitIf_expression(ctx *If_expressionContext) interface{}
 

@@ -17,13 +17,24 @@ comment: Comment;
 native_instruction: NativeInstructionCall;
 
 if_instruction:
-	If ' '+ if_expression '\n' instructions Indent? End;
+	If ' '+ if_expression '\n' instructions (
+		Indent? elif_instruction
+	)? Indent? End;
+
+elif_instruction:
+	Elif ' '+ if_expression '\n' instructions (
+		Indent? (elif_instruction | else_instruction)
+	)?;
+
+else_instruction: Else '\n' instructions;
 
 if_expression: value ' '* (OperatorEq | OperatorNe) ' '* value;
 
 value: StringLiteral | Variable;
 
 If: '!IF';
+Else: '!ELSE';
+Elif: '!ELIF';
 End: '!END';
 
 OperatorEq: '==';

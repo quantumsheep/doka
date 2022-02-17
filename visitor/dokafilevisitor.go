@@ -79,10 +79,33 @@ func (v *DokafileVisitor) VisitIf_instruction(ctx *parser.If_instructionContext)
 	}
 
 	if expression {
-		v.VisitInstructions(ctx.Instructions().(*parser.InstructionsContext))
+		return v.VisitInstructions(ctx.Instructions().(*parser.InstructionsContext))
 	}
 
-	return nil
+	return v.VisitElif_instruction(ctx.Elif_instruction().(*parser.Elif_instructionContext))
+}
+
+func (v *DokafileVisitor) VisitElif_instruction(ctx *parser.Elif_instructionContext) error {
+	expression, e := v.VisitIf_expression(ctx.If_expression().(*parser.If_expressionContext))
+	if e != nil {
+		return e
+	}
+
+	if expression {
+		return v.VisitInstructions(ctx.Instructions().(*parser.InstructionsContext))
+	}
+
+	if child := ctx.Elif_instruction(); child != nil {
+		return v.VisitElif_instruction(child.(*parser.Elif_instructionContext))
+	} else if child := ctx.Else_instruction(); child != nil {
+		return v.VisitElse_instruction(child.(*parser.Else_instructionContext))
+	}
+
+	return v.ErrorAtToken("unknown context", ctx.GetStart())
+}
+
+func (v *DokafileVisitor) VisitElse_instruction(ctx *parser.Else_instructionContext) error {
+	return v.VisitInstructions(ctx.Instructions().(*parser.InstructionsContext))
 }
 
 func (v *DokafileVisitor) VisitIf_expression(ctx *parser.If_expressionContext) (bool, error) {

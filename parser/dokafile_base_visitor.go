@@ -36,6 +36,14 @@ func (v *BaseDokafileVisitor) VisitIf_instruction(ctx *If_instructionContext) in
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseDokafileVisitor) VisitElif_instruction(ctx *Elif_instructionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseDokafileVisitor) VisitElse_instruction(ctx *Else_instructionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseDokafileVisitor) VisitIf_expression(ctx *If_expressionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
