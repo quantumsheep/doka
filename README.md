@@ -20,7 +20,7 @@ Variables are called using `$my_var` syntax in Dokafiles.
 By default, `os` and `arch` variables are set depending on the current system.
 
 ## `!IF` preprocessor
-`!IF` preprocessor is used to conditionally include or not instructions. Right know you can use it to compare variables and values between them.
+`!IF` preprocessor is used to conditionally include or not instructions. Right now you can use it to compare variables and values between them.
 
 ```dockerfile
 !IF $my_var == "value1"
