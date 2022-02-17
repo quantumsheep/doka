@@ -4,7 +4,11 @@ translation: instructions EOF;
 
 instructions: ( Indent? instruction '\n')*;
 
-instruction: if_instruction | native_instruction | nothing | comment;
+instruction:
+	if_instruction
+	| native_instruction
+	| nothing
+	| comment;
 
 nothing:;
 
@@ -36,6 +40,7 @@ Indent: [ \t]+;
 
 fragment NativeInstruction:
 	'FROM'
+	| 'WORKDIR'
 	| 'COPY'
 	| 'RUN'
 	| 'CMD'
