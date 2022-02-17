@@ -1,0 +1,17 @@
+T__0=1
+T__1=2
+If=3
+End=4
+OperatorEq=5
+OperatorNe=6
+Variable=7
+NativeInstructionCall=8
+Indent=9
+StringLiteral=10
+Comment=11
+'\n'=1
+' '=2
+'!IF'=3
+'!END'=4
+'=='=5
+'!='=6
