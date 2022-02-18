@@ -16,65 +16,62 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 15, 111,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 15, 104,
 	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
-	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 3, 2,
-	3, 2, 3, 2, 3, 3, 5, 3, 29, 10, 3, 3, 3, 3, 3, 3, 3, 7, 3, 34, 10, 3, 12,
-	3, 14, 3, 37, 11, 3, 3, 4, 3, 4, 3, 4, 3, 4, 5, 4, 43, 10, 4, 3, 5, 3,
-	5, 3, 6, 3, 6, 3, 7, 3, 7, 3, 8, 3, 8, 6, 8, 53, 10, 8, 13, 8, 14, 8, 54,
-	3, 8, 3, 8, 3, 8, 3, 8, 5, 8, 61, 10, 8, 3, 8, 5, 8, 64, 10, 8, 3, 8, 5,
-	8, 67, 10, 8, 3, 8, 3, 8, 3, 9, 3, 9, 6, 9, 73, 10, 9, 13, 9, 14, 9, 74,
-	3, 9, 3, 9, 3, 9, 3, 9, 5, 9, 81, 10, 9, 3, 9, 3, 9, 5, 9, 85, 10, 9, 5,
-	9, 87, 10, 9, 3, 10, 3, 10, 3, 10, 3, 10, 3, 11, 3, 11, 7, 11, 95, 10,
-	11, 12, 11, 14, 11, 98, 11, 11, 3, 11, 3, 11, 7, 11, 102, 10, 11, 12, 11,
-	14, 11, 105, 11, 11, 3, 11, 3, 11, 3, 12, 3, 12, 3, 12, 2, 2, 13, 2, 4,
-	6, 8, 10, 12, 14, 16, 18, 20, 22, 2, 4, 3, 2, 9, 10, 4, 2, 11, 11, 14,
-	14, 2, 114, 2, 24, 3, 2, 2, 2, 4, 35, 3, 2, 2, 2, 6, 42, 3, 2, 2, 2, 8,
-	44, 3, 2, 2, 2, 10, 46, 3, 2, 2, 2, 12, 48, 3, 2, 2, 2, 14, 50, 3, 2, 2,
-	2, 16, 70, 3, 2, 2, 2, 18, 88, 3, 2, 2, 2, 20, 92, 3, 2, 2, 2, 22, 108,
-	3, 2, 2, 2, 24, 25, 5, 4, 3, 2, 25, 26, 7, 2, 2, 3, 26, 3, 3, 2, 2, 2,
-	27, 29, 7, 13, 2, 2, 28, 27, 3, 2, 2, 2, 28, 29, 3, 2, 2, 2, 29, 30, 3,
-	2, 2, 2, 30, 31, 5, 6, 4, 2, 31, 32, 7, 3, 2, 2, 32, 34, 3, 2, 2, 2, 33,
-	28, 3, 2, 2, 2, 34, 37, 3, 2, 2, 2, 35, 33, 3, 2, 2, 2, 35, 36, 3, 2, 2,
-	2, 36, 5, 3, 2, 2, 2, 37, 35, 3, 2, 2, 2, 38, 43, 5, 14, 8, 2, 39, 43,
-	5, 12, 7, 2, 40, 43, 5, 8, 5, 2, 41, 43, 5, 10, 6, 2, 42, 38, 3, 2, 2,
-	2, 42, 39, 3, 2, 2, 2, 42, 40, 3, 2, 2, 2, 42, 41, 3, 2, 2, 2, 43, 7, 3,
-	2, 2, 2, 44, 45, 3, 2, 2, 2, 45, 9, 3, 2, 2, 2, 46, 47, 7, 15, 2, 2, 47,
-	11, 3, 2, 2, 2, 48, 49, 7, 12, 2, 2, 49, 13, 3, 2, 2, 2, 50, 52, 7, 5,
-	2, 2, 51, 53, 7, 4, 2, 2, 52, 51, 3, 2, 2, 2, 53, 54, 3, 2, 2, 2, 54, 52,
-	3, 2, 2, 2, 54, 55, 3, 2, 2, 2, 55, 56, 3, 2, 2, 2, 56, 57, 5, 20, 11,
-	2, 57, 58, 7, 3, 2, 2, 58, 63, 5, 4, 3, 2, 59, 61, 7, 13, 2, 2, 60, 59,
-	3, 2, 2, 2, 60, 61, 3, 2, 2, 2, 61, 62, 3, 2, 2, 2, 62, 64, 5, 16, 9, 2,
-	63, 60, 3, 2, 2, 2, 63, 64, 3, 2, 2, 2, 64, 66, 3, 2, 2, 2, 65, 67, 7,
-	13, 2, 2, 66, 65, 3, 2, 2, 2, 66, 67, 3, 2, 2, 2, 67, 68, 3, 2, 2, 2, 68,
-	69, 7, 8, 2, 2, 69, 15, 3, 2, 2, 2, 70, 72, 7, 7, 2, 2, 71, 73, 7, 4, 2,
-	2, 72, 71, 3, 2, 2, 2, 73, 74, 3, 2, 2, 2, 74, 72, 3, 2, 2, 2, 74, 75,
-	3, 2, 2, 2, 75, 76, 3, 2, 2, 2, 76, 77, 5, 20, 11, 2, 77, 78, 7, 3, 2,
-	2, 78, 86, 5, 4, 3, 2, 79, 81, 7, 13, 2, 2, 80, 79, 3, 2, 2, 2, 80, 81,
-	3, 2, 2, 2, 81, 84, 3, 2, 2, 2, 82, 85, 5, 16, 9, 2, 83, 85, 5, 18, 10,
-	2, 84, 82, 3, 2, 2, 2, 84, 83, 3, 2, 2, 2, 85, 87, 3, 2, 2, 2, 86, 80,
-	3, 2, 2, 2, 86, 87, 3, 2, 2, 2, 87, 17, 3, 2, 2, 2, 88, 89, 7, 6, 2, 2,
-	89, 90, 7, 3, 2, 2, 90, 91, 5, 4, 3, 2, 91, 19, 3, 2, 2, 2, 92, 96, 5,
-	22, 12, 2, 93, 95, 7, 4, 2, 2, 94, 93, 3, 2, 2, 2, 95, 98, 3, 2, 2, 2,
-	96, 94, 3, 2, 2, 2, 96, 97, 3, 2, 2, 2, 97, 99, 3, 2, 2, 2, 98, 96, 3,
-	2, 2, 2, 99, 103, 9, 2, 2, 2, 100, 102, 7, 4, 2, 2, 101, 100, 3, 2, 2,
-	2, 102, 105, 3, 2, 2, 2, 103, 101, 3, 2, 2, 2, 103, 104, 3, 2, 2, 2, 104,
-	106, 3, 2, 2, 2, 105, 103, 3, 2, 2, 2, 106, 107, 5, 22, 12, 2, 107, 21,
-	3, 2, 2, 2, 108, 109, 9, 3, 2, 2, 109, 23, 3, 2, 2, 2, 15, 28, 35, 42,
-	54, 60, 63, 66, 74, 80, 84, 86, 96, 103,
+	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
+	9, 13, 3, 2, 3, 2, 3, 2, 3, 3, 5, 3, 31, 10, 3, 3, 3, 3, 3, 3, 3, 7, 3,
+	36, 10, 3, 12, 3, 14, 3, 39, 11, 3, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 5, 4,
+	46, 10, 4, 3, 5, 3, 5, 3, 6, 3, 6, 3, 7, 3, 7, 3, 8, 3, 8, 3, 8, 3, 8,
+	3, 8, 3, 8, 5, 8, 60, 10, 8, 3, 8, 5, 8, 63, 10, 8, 3, 8, 5, 8, 66, 10,
+	8, 3, 8, 3, 8, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 5, 9, 76, 10, 9, 3,
+	9, 3, 9, 5, 9, 80, 10, 9, 5, 9, 82, 10, 9, 3, 10, 3, 10, 3, 10, 3, 10,
+	3, 11, 3, 11, 5, 11, 90, 10, 11, 3, 11, 3, 11, 5, 11, 94, 10, 11, 3, 11,
+	3, 11, 3, 12, 3, 12, 3, 13, 3, 13, 3, 13, 3, 13, 3, 13, 2, 2, 14, 2, 4,
+	6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 2, 4, 3, 2, 8, 9, 4, 2, 10, 10, 13,
+	13, 2, 105, 2, 26, 3, 2, 2, 2, 4, 37, 3, 2, 2, 2, 6, 45, 3, 2, 2, 2, 8,
+	47, 3, 2, 2, 2, 10, 49, 3, 2, 2, 2, 12, 51, 3, 2, 2, 2, 14, 53, 3, 2, 2,
+	2, 16, 69, 3, 2, 2, 2, 18, 83, 3, 2, 2, 2, 20, 87, 3, 2, 2, 2, 22, 97,
+	3, 2, 2, 2, 24, 99, 3, 2, 2, 2, 26, 27, 5, 4, 3, 2, 27, 28, 7, 2, 2, 3,
+	28, 3, 3, 2, 2, 2, 29, 31, 7, 15, 2, 2, 30, 29, 3, 2, 2, 2, 30, 31, 3,
+	2, 2, 2, 31, 32, 3, 2, 2, 2, 32, 33, 5, 6, 4, 2, 33, 34, 7, 3, 2, 2, 34,
+	36, 3, 2, 2, 2, 35, 30, 3, 2, 2, 2, 36, 39, 3, 2, 2, 2, 37, 35, 3, 2, 2,
+	2, 37, 38, 3, 2, 2, 2, 38, 5, 3, 2, 2, 2, 39, 37, 3, 2, 2, 2, 40, 46, 5,
+	14, 8, 2, 41, 46, 5, 24, 13, 2, 42, 46, 5, 12, 7, 2, 43, 46, 5, 8, 5, 2,
+	44, 46, 5, 10, 6, 2, 45, 40, 3, 2, 2, 2, 45, 41, 3, 2, 2, 2, 45, 42, 3,
+	2, 2, 2, 45, 43, 3, 2, 2, 2, 45, 44, 3, 2, 2, 2, 46, 7, 3, 2, 2, 2, 47,
+	48, 3, 2, 2, 2, 48, 9, 3, 2, 2, 2, 49, 50, 7, 14, 2, 2, 50, 11, 3, 2, 2,
+	2, 51, 52, 7, 12, 2, 2, 52, 13, 3, 2, 2, 2, 53, 54, 7, 4, 2, 2, 54, 55,
+	7, 15, 2, 2, 55, 56, 5, 20, 11, 2, 56, 57, 7, 3, 2, 2, 57, 62, 5, 4, 3,
+	2, 58, 60, 7, 15, 2, 2, 59, 58, 3, 2, 2, 2, 59, 60, 3, 2, 2, 2, 60, 61,
+	3, 2, 2, 2, 61, 63, 5, 16, 9, 2, 62, 59, 3, 2, 2, 2, 62, 63, 3, 2, 2, 2,
+	63, 65, 3, 2, 2, 2, 64, 66, 7, 15, 2, 2, 65, 64, 3, 2, 2, 2, 65, 66, 3,
+	2, 2, 2, 66, 67, 3, 2, 2, 2, 67, 68, 7, 7, 2, 2, 68, 15, 3, 2, 2, 2, 69,
+	70, 7, 6, 2, 2, 70, 71, 7, 15, 2, 2, 71, 72, 5, 20, 11, 2, 72, 73, 7, 3,
+	2, 2, 73, 81, 5, 4, 3, 2, 74, 76, 7, 15, 2, 2, 75, 74, 3, 2, 2, 2, 75,
+	76, 3, 2, 2, 2, 76, 79, 3, 2, 2, 2, 77, 80, 5, 16, 9, 2, 78, 80, 5, 18,
+	10, 2, 79, 77, 3, 2, 2, 2, 79, 78, 3, 2, 2, 2, 80, 82, 3, 2, 2, 2, 81,
+	75, 3, 2, 2, 2, 81, 82, 3, 2, 2, 2, 82, 17, 3, 2, 2, 2, 83, 84, 7, 5, 2,
+	2, 84, 85, 7, 3, 2, 2, 85, 86, 5, 4, 3, 2, 86, 19, 3, 2, 2, 2, 87, 89,
+	5, 22, 12, 2, 88, 90, 7, 15, 2, 2, 89, 88, 3, 2, 2, 2, 89, 90, 3, 2, 2,
+	2, 90, 91, 3, 2, 2, 2, 91, 93, 9, 2, 2, 2, 92, 94, 7, 15, 2, 2, 93, 92,
+	3, 2, 2, 2, 93, 94, 3, 2, 2, 2, 94, 95, 3, 2, 2, 2, 95, 96, 5, 22, 12,
+	2, 96, 21, 3, 2, 2, 2, 97, 98, 9, 3, 2, 2, 98, 23, 3, 2, 2, 2, 99, 100,
+	7, 11, 2, 2, 100, 101, 7, 15, 2, 2, 101, 102, 7, 13, 2, 2, 102, 25, 3,
+	2, 2, 2, 13, 30, 37, 45, 59, 62, 65, 75, 79, 81, 89, 93,
 }
 var literalNames = []string{
-	"", "'\n'", "' '", "'!IF'", "'!ELSE'", "'!ELIF'", "'!END'", "'=='", "'!='",
+	"", "'\n'", "'!IF'", "'!ELSE'", "'!ELIF'", "'!END'", "'=='", "'!='", "",
+	"'!INCLUDE'",
 }
 var symbolicNames = []string{
-	"", "", "", "If", "Else", "Elif", "End", "OperatorEq", "OperatorNe", "Variable",
-	"NativeInstructionCall", "Indent", "StringLiteral", "Comment",
+	"", "", "If", "Else", "Elif", "End", "OperatorEq", "OperatorNe", "Variable",
+	"Include", "NativeInstructionCall", "StringLiteral", "Comment", "Spacing",
 }
 
 var ruleNames = []string{
 	"translation", "instructions", "instruction", "nothing", "comment", "native_instruction",
 	"if_instruction", "elif_instruction", "else_instruction", "if_expression",
-	"value",
+	"value", "include_instruction",
 }
 
 type DokafileParser struct {
@@ -110,33 +107,34 @@ func NewDokafileParser(input antlr.TokenStream) *DokafileParser {
 const (
 	DokafileParserEOF                   = antlr.TokenEOF
 	DokafileParserT__0                  = 1
-	DokafileParserT__1                  = 2
-	DokafileParserIf                    = 3
-	DokafileParserElse                  = 4
-	DokafileParserElif                  = 5
-	DokafileParserEnd                   = 6
-	DokafileParserOperatorEq            = 7
-	DokafileParserOperatorNe            = 8
-	DokafileParserVariable              = 9
+	DokafileParserIf                    = 2
+	DokafileParserElse                  = 3
+	DokafileParserElif                  = 4
+	DokafileParserEnd                   = 5
+	DokafileParserOperatorEq            = 6
+	DokafileParserOperatorNe            = 7
+	DokafileParserVariable              = 8
+	DokafileParserInclude               = 9
 	DokafileParserNativeInstructionCall = 10
-	DokafileParserIndent                = 11
-	DokafileParserStringLiteral         = 12
-	DokafileParserComment               = 13
+	DokafileParserStringLiteral         = 11
+	DokafileParserComment               = 12
+	DokafileParserSpacing               = 13
 )
 
 // DokafileParser rules.
 const (
-	DokafileParserRULE_translation        = 0
-	DokafileParserRULE_instructions       = 1
-	DokafileParserRULE_instruction        = 2
-	DokafileParserRULE_nothing            = 3
-	DokafileParserRULE_comment            = 4
-	DokafileParserRULE_native_instruction = 5
-	DokafileParserRULE_if_instruction     = 6
-	DokafileParserRULE_elif_instruction   = 7
-	DokafileParserRULE_else_instruction   = 8
-	DokafileParserRULE_if_expression      = 9
-	DokafileParserRULE_value              = 10
+	DokafileParserRULE_translation         = 0
+	DokafileParserRULE_instructions        = 1
+	DokafileParserRULE_instruction         = 2
+	DokafileParserRULE_nothing             = 3
+	DokafileParserRULE_comment             = 4
+	DokafileParserRULE_native_instruction  = 5
+	DokafileParserRULE_if_instruction      = 6
+	DokafileParserRULE_elif_instruction    = 7
+	DokafileParserRULE_else_instruction    = 8
+	DokafileParserRULE_if_expression       = 9
+	DokafileParserRULE_value               = 10
+	DokafileParserRULE_include_instruction = 11
 )
 
 // ITranslationContext is an interface to support dynamic dispatch.
@@ -231,11 +229,11 @@ func (p *DokafileParser) Translation() (localctx ITranslationContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(22)
+		p.SetState(24)
 		p.Instructions()
 	}
 	{
-		p.SetState(23)
+		p.SetState(25)
 		p.Match(DokafileParserEOF)
 	}
 
@@ -303,12 +301,12 @@ func (s *InstructionsContext) Instruction(i int) IInstructionContext {
 	return t.(IInstructionContext)
 }
 
-func (s *InstructionsContext) AllIndent() []antlr.TerminalNode {
-	return s.GetTokens(DokafileParserIndent)
+func (s *InstructionsContext) AllSpacing() []antlr.TerminalNode {
+	return s.GetTokens(DokafileParserSpacing)
 }
 
-func (s *InstructionsContext) Indent(i int) antlr.TerminalNode {
-	return s.GetToken(DokafileParserIndent, i)
+func (s *InstructionsContext) Spacing(i int) antlr.TerminalNode {
+	return s.GetToken(DokafileParserSpacing, i)
 }
 
 func (s *InstructionsContext) GetRuleContext() antlr.RuleContext {
@@ -353,34 +351,34 @@ func (p *DokafileParser) Instructions() (localctx IInstructionsContext) {
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(33)
+	p.SetState(35)
 	p.GetErrorHandler().Sync(p)
 	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext())
 
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
-			p.SetState(26)
+			p.SetState(28)
 			p.GetErrorHandler().Sync(p)
 			_la = p.GetTokenStream().LA(1)
 
-			if _la == DokafileParserIndent {
+			if _la == DokafileParserSpacing {
 				{
-					p.SetState(25)
-					p.Match(DokafileParserIndent)
+					p.SetState(27)
+					p.Match(DokafileParserSpacing)
 				}
 
 			}
 			{
-				p.SetState(28)
+				p.SetState(30)
 				p.Instruction()
 			}
 			{
-				p.SetState(29)
+				p.SetState(31)
 				p.Match(DokafileParserT__0)
 			}
 
 		}
-		p.SetState(35)
+		p.SetState(37)
 		p.GetErrorHandler().Sync(p)
 		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext())
 	}
@@ -434,6 +432,16 @@ func (s *InstructionContext) If_instruction() IIf_instructionContext {
 	}
 
 	return t.(IIf_instructionContext)
+}
+
+func (s *InstructionContext) Include_instruction() IInclude_instructionContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IInclude_instructionContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IInclude_instructionContext)
 }
 
 func (s *InstructionContext) Native_instruction() INative_instructionContext {
@@ -504,35 +512,42 @@ func (p *DokafileParser) Instruction() (localctx IInstructionContext) {
 		}
 	}()
 
-	p.SetState(40)
+	p.SetState(43)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case DokafileParserIf:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(36)
+			p.SetState(38)
 			p.If_instruction()
 		}
 
-	case DokafileParserNativeInstructionCall:
+	case DokafileParserInclude:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(37)
+			p.SetState(39)
+			p.Include_instruction()
+		}
+
+	case DokafileParserNativeInstructionCall:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(40)
 			p.Native_instruction()
 		}
 
 	case DokafileParserT__0:
-		p.EnterOuterAlt(localctx, 3)
+		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(38)
+			p.SetState(41)
 			p.Nothing()
 		}
 
 	case DokafileParserComment:
-		p.EnterOuterAlt(localctx, 4)
+		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(39)
+			p.SetState(42)
 			p.Comment()
 		}
 
@@ -705,7 +720,7 @@ func (p *DokafileParser) Comment() (localctx ICommentContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(44)
+		p.SetState(47)
 		p.Match(DokafileParserComment)
 	}
 
@@ -794,7 +809,7 @@ func (p *DokafileParser) Native_instruction() (localctx INative_instructionConte
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(46)
+		p.SetState(49)
 		p.Match(DokafileParserNativeInstructionCall)
 	}
 
@@ -843,6 +858,14 @@ func (s *If_instructionContext) If() antlr.TerminalNode {
 	return s.GetToken(DokafileParserIf, 0)
 }
 
+func (s *If_instructionContext) AllSpacing() []antlr.TerminalNode {
+	return s.GetTokens(DokafileParserSpacing)
+}
+
+func (s *If_instructionContext) Spacing(i int) antlr.TerminalNode {
+	return s.GetToken(DokafileParserSpacing, i)
+}
+
 func (s *If_instructionContext) If_expression() IIf_expressionContext {
 	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIf_expressionContext)(nil)).Elem(), 0)
 
@@ -875,14 +898,6 @@ func (s *If_instructionContext) Elif_instruction() IElif_instructionContext {
 	}
 
 	return t.(IElif_instructionContext)
-}
-
-func (s *If_instructionContext) AllIndent() []antlr.TerminalNode {
-	return s.GetTokens(DokafileParserIndent)
-}
-
-func (s *If_instructionContext) Indent(i int) antlr.TerminalNode {
-	return s.GetToken(DokafileParserIndent, i)
 }
 
 func (s *If_instructionContext) GetRuleContext() antlr.RuleContext {
@@ -926,69 +941,59 @@ func (p *DokafileParser) If_instruction() (localctx IIf_instructionContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(48)
+		p.SetState(51)
 		p.Match(DokafileParserIf)
 	}
-	p.SetState(50)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	for ok := true; ok; ok = _la == DokafileParserT__1 {
-		{
-			p.SetState(49)
-			p.Match(DokafileParserT__1)
-		}
-
+	{
 		p.SetState(52)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
+		p.Match(DokafileParserSpacing)
 	}
 	{
-		p.SetState(54)
+		p.SetState(53)
 		p.If_expression()
 	}
 	{
-		p.SetState(55)
+		p.SetState(54)
 		p.Match(DokafileParserT__0)
 	}
 	{
-		p.SetState(56)
+		p.SetState(55)
 		p.Instructions()
 	}
-	p.SetState(61)
+	p.SetState(60)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 5, p.GetParserRuleContext()) == 1 {
-		p.SetState(58)
+	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 4, p.GetParserRuleContext()) == 1 {
+		p.SetState(57)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		if _la == DokafileParserIndent {
+		if _la == DokafileParserSpacing {
 			{
-				p.SetState(57)
-				p.Match(DokafileParserIndent)
+				p.SetState(56)
+				p.Match(DokafileParserSpacing)
 			}
 
 		}
 		{
-			p.SetState(60)
+			p.SetState(59)
 			p.Elif_instruction()
 		}
 
 	}
-	p.SetState(64)
+	p.SetState(63)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	if _la == DokafileParserIndent {
+	if _la == DokafileParserSpacing {
 		{
-			p.SetState(63)
-			p.Match(DokafileParserIndent)
+			p.SetState(62)
+			p.Match(DokafileParserSpacing)
 		}
 
 	}
 	{
-		p.SetState(66)
+		p.SetState(65)
 		p.Match(DokafileParserEnd)
 	}
 
@@ -1037,6 +1042,14 @@ func (s *Elif_instructionContext) Elif() antlr.TerminalNode {
 	return s.GetToken(DokafileParserElif, 0)
 }
 
+func (s *Elif_instructionContext) AllSpacing() []antlr.TerminalNode {
+	return s.GetTokens(DokafileParserSpacing)
+}
+
+func (s *Elif_instructionContext) Spacing(i int) antlr.TerminalNode {
+	return s.GetToken(DokafileParserSpacing, i)
+}
+
 func (s *Elif_instructionContext) If_expression() IIf_expressionContext {
 	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIf_expressionContext)(nil)).Elem(), 0)
 
@@ -1075,10 +1088,6 @@ func (s *Elif_instructionContext) Else_instruction() IElse_instructionContext {
 	}
 
 	return t.(IElse_instructionContext)
-}
-
-func (s *Elif_instructionContext) Indent() antlr.TerminalNode {
-	return s.GetToken(DokafileParserIndent, 0)
 }
 
 func (s *Elif_instructionContext) GetRuleContext() antlr.RuleContext {
@@ -1122,63 +1131,53 @@ func (p *DokafileParser) Elif_instruction() (localctx IElif_instructionContext) 
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(68)
+		p.SetState(67)
 		p.Match(DokafileParserElif)
 	}
-	p.SetState(70)
-	p.GetErrorHandler().Sync(p)
-	_la = p.GetTokenStream().LA(1)
-
-	for ok := true; ok; ok = _la == DokafileParserT__1 {
-		{
-			p.SetState(69)
-			p.Match(DokafileParserT__1)
-		}
-
-		p.SetState(72)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
+	{
+		p.SetState(68)
+		p.Match(DokafileParserSpacing)
 	}
 	{
-		p.SetState(74)
+		p.SetState(69)
 		p.If_expression()
 	}
 	{
-		p.SetState(75)
+		p.SetState(70)
 		p.Match(DokafileParserT__0)
 	}
 	{
-		p.SetState(76)
+		p.SetState(71)
 		p.Instructions()
 	}
-	p.SetState(84)
+	p.SetState(79)
 	p.GetErrorHandler().Sync(p)
 
-	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 10, p.GetParserRuleContext()) == 1 {
-		p.SetState(78)
+	if p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 8, p.GetParserRuleContext()) == 1 {
+		p.SetState(73)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 
-		if _la == DokafileParserIndent {
+		if _la == DokafileParserSpacing {
 			{
-				p.SetState(77)
-				p.Match(DokafileParserIndent)
+				p.SetState(72)
+				p.Match(DokafileParserSpacing)
 			}
 
 		}
-		p.SetState(82)
+		p.SetState(77)
 		p.GetErrorHandler().Sync(p)
 
 		switch p.GetTokenStream().LA(1) {
 		case DokafileParserElif:
 			{
-				p.SetState(80)
+				p.SetState(75)
 				p.Elif_instruction()
 			}
 
 		case DokafileParserElse:
 			{
-				p.SetState(81)
+				p.SetState(76)
 				p.Else_instruction()
 			}
 
@@ -1283,15 +1282,15 @@ func (p *DokafileParser) Else_instruction() (localctx IElse_instructionContext) 
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(86)
+		p.SetState(81)
 		p.Match(DokafileParserElse)
 	}
 	{
-		p.SetState(87)
+		p.SetState(82)
 		p.Match(DokafileParserT__0)
 	}
 	{
-		p.SetState(88)
+		p.SetState(83)
 		p.Instructions()
 	}
 
@@ -1367,6 +1366,14 @@ func (s *If_expressionContext) OperatorNe() antlr.TerminalNode {
 	return s.GetToken(DokafileParserOperatorNe, 0)
 }
 
+func (s *If_expressionContext) AllSpacing() []antlr.TerminalNode {
+	return s.GetTokens(DokafileParserSpacing)
+}
+
+func (s *If_expressionContext) Spacing(i int) antlr.TerminalNode {
+	return s.GetToken(DokafileParserSpacing, i)
+}
+
 func (s *If_expressionContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
@@ -1408,25 +1415,22 @@ func (p *DokafileParser) If_expression() (localctx IIf_expressionContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(90)
+		p.SetState(85)
 		p.Value()
 	}
-	p.SetState(94)
+	p.SetState(87)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for _la == DokafileParserT__1 {
+	if _la == DokafileParserSpacing {
 		{
-			p.SetState(91)
-			p.Match(DokafileParserT__1)
+			p.SetState(86)
+			p.Match(DokafileParserSpacing)
 		}
 
-		p.SetState(96)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(97)
+		p.SetState(89)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == DokafileParserOperatorEq || _la == DokafileParserOperatorNe) {
@@ -1436,22 +1440,19 @@ func (p *DokafileParser) If_expression() (localctx IIf_expressionContext) {
 			p.Consume()
 		}
 	}
-	p.SetState(101)
+	p.SetState(91)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for _la == DokafileParserT__1 {
+	if _la == DokafileParserSpacing {
 		{
-			p.SetState(98)
-			p.Match(DokafileParserT__1)
+			p.SetState(90)
+			p.Match(DokafileParserSpacing)
 		}
 
-		p.SetState(103)
-		p.GetErrorHandler().Sync(p)
-		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(104)
+		p.SetState(93)
 		p.Value()
 	}
 
@@ -1545,7 +1546,7 @@ func (p *DokafileParser) Value() (localctx IValueContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(106)
+		p.SetState(95)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == DokafileParserVariable || _la == DokafileParserStringLiteral) {
@@ -1554,6 +1555,111 @@ func (p *DokafileParser) Value() (localctx IValueContext) {
 			p.GetErrorHandler().ReportMatch(p)
 			p.Consume()
 		}
+	}
+
+	return localctx
+}
+
+// IInclude_instructionContext is an interface to support dynamic dispatch.
+type IInclude_instructionContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// IsInclude_instructionContext differentiates from other interfaces.
+	IsInclude_instructionContext()
+}
+
+type Include_instructionContext struct {
+	*antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyInclude_instructionContext() *Include_instructionContext {
+	var p = new(Include_instructionContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = DokafileParserRULE_include_instruction
+	return p
+}
+
+func (*Include_instructionContext) IsInclude_instructionContext() {}
+
+func NewInclude_instructionContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Include_instructionContext {
+	var p = new(Include_instructionContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = DokafileParserRULE_include_instruction
+
+	return p
+}
+
+func (s *Include_instructionContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Include_instructionContext) Include() antlr.TerminalNode {
+	return s.GetToken(DokafileParserInclude, 0)
+}
+
+func (s *Include_instructionContext) Spacing() antlr.TerminalNode {
+	return s.GetToken(DokafileParserSpacing, 0)
+}
+
+func (s *Include_instructionContext) StringLiteral() antlr.TerminalNode {
+	return s.GetToken(DokafileParserStringLiteral, 0)
+}
+
+func (s *Include_instructionContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Include_instructionContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Include_instructionContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case DokafileVisitor:
+		return t.VisitInclude_instruction(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *DokafileParser) Include_instruction() (localctx IInclude_instructionContext) {
+	localctx = NewInclude_instructionContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 22, DokafileParserRULE_include_instruction)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(97)
+		p.Match(DokafileParserInclude)
+	}
+	{
+		p.SetState(98)
+		p.Match(DokafileParserSpacing)
+	}
+	{
+		p.SetState(99)
+		p.Match(DokafileParserStringLiteral)
 	}
 
 	return localctx

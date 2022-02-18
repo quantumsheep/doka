@@ -3,6 +3,7 @@ package visitor
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"runtime"
 
 	"github.com/antlr/antlr4/runtime/Go/antlr"
@@ -12,16 +13,18 @@ import (
 type DokafileVisitor struct {
 	*parser.BaseDokafileVisitor
 
-	filepath  string
-	variables map[string]string
+	filepath   string
+	variables  map[string]string
+	fullErrors bool
 
 	output string
 }
 
-func NewDokafileVisitor(filepath string, variables map[string]string) *DokafileVisitor {
+func NewDokafileVisitor(filepath string, variables map[string]string, fullErrors bool) *DokafileVisitor {
 	return &DokafileVisitor{
-		filepath:  filepath,
-		variables: variables,
+		filepath:   filepath,
+		variables:  variables,
+		fullErrors: fullErrors,
 	}
 }
 
@@ -59,6 +62,11 @@ func (v *DokafileVisitor) VisitInstruction(ctx *parser.InstructionContext) error
 		if e != nil {
 			return e
 		}
+	} else if child := ctx.Include_instruction(); child != nil {
+		e := v.VisitInclude_instruction(child.(*parser.Include_instructionContext))
+		if e != nil {
+			return e
+		}
 	} else if child := ctx.Native_instruction(); child != nil {
 		v.VisitNative_instruction(child.(*parser.Native_instructionContext))
 	} else if child := ctx.Nothing(); child != nil {
@@ -93,9 +101,7 @@ func (v *DokafileVisitor) VisitElif_instruction(ctx *parser.Elif_instructionCont
 
 	if expression {
 		return v.VisitInstructions(ctx.Instructions().(*parser.InstructionsContext))
-	}
-
-	if child := ctx.Elif_instruction(); child != nil {
+	} else if child := ctx.Elif_instruction(); child != nil {
 		return v.VisitElif_instruction(child.(*parser.Elif_instructionContext))
 	} else if child := ctx.Else_instruction(); child != nil {
 		return v.VisitElse_instruction(child.(*parser.Else_instructionContext))
@@ -126,6 +132,27 @@ func (v *DokafileVisitor) VisitIf_expression(ctx *parser.If_expressionContext) (
 	}
 
 	return false, v.ErrorAtToken("operator not implemented", ctx.GetStart())
+}
+
+func (v *DokafileVisitor) VisitInclude_instruction(ctx *parser.Include_instructionContext) error {
+	includePath := ""
+
+	if child := ctx.StringLiteral(); child != nil {
+		str := child.GetText()
+		includePath = str[1 : len(str)-1]
+	}
+
+	if includePath == "" {
+		return v.ErrorAtToken("invalid include path", ctx.GetStart())
+	}
+
+	output, e := ParseFile(filepath.Join(filepath.Dir(v.filepath), includePath), v.fullErrors, v.variables)
+	if e != nil {
+		return e
+	}
+
+	v.output += output
+	return nil
 }
 
 func (v *DokafileVisitor) VisitValue(ctx *parser.ValueContext) (string, error) {
@@ -188,10 +215,10 @@ func (listener *DokaErrorListener) SyntaxError(recognizer antlr.Recognizer, offe
 	listener.Errors = append(listener.Errors, err)
 }
 
-func ParseFile(filepath string, fullErrors bool, variables map[string]string) (string, []error) {
+func ParseFile(filepath string, fullErrors bool, variables map[string]string) (string, error) {
 	input, e := antlr.NewFileStream(filepath)
 	if e != nil {
-		return "", []error{e}
+		return "", e
 	}
 
 	errorListener := NewDokaErrorListener(filepath, fullErrors)
@@ -206,14 +233,21 @@ func ParseFile(filepath string, fullErrors bool, variables map[string]string) (s
 
 	tree := parser.Translation()
 	if tree == nil {
-		return "", []error{fmt.Errorf("parse error")}
+		return "", fmt.Errorf("parse error")
 	}
 
 	if len(errorListener.Errors) > 0 {
-		return "", errorListener.Errors
+		// concat all errors
+		e := errorListener.Errors[0]
+
+		for i := 1; i < len(errorListener.Errors); i++ {
+			e = fmt.Errorf("%s\n%s", e, errorListener.Errors[i])
+		}
+
+		return "", e
 	}
 
-	visitor := NewDokafileVisitor(filepath, variables)
+	visitor := NewDokafileVisitor(filepath, variables, fullErrors)
 
 	// assign os if not already set
 	if _, ok := variables["os"]; !ok {
@@ -226,8 +260,8 @@ func ParseFile(filepath string, fullErrors bool, variables map[string]string) (s
 
 	e = visitor.Visit(tree)
 	if e != nil {
-		return "", []error{e}
+		return "", e
 	}
 
-	return visitor.output, []error{}
+	return visitor.output, nil
 }

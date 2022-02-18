@@ -75,13 +75,9 @@ func run(cmd *cobra.Command, args []string) {
 		variables["arch"] = runtime.GOARCH
 	}
 
-	output, errors := visitor.ParseFile(file, fullErrors, variables)
-	if len(errors) > 0 {
-		for _, e := range errors {
-			fmt.Fprintln(os.Stderr, e)
-		}
-
-		os.Exit(1)
+	output, e := visitor.ParseFile(file, fullErrors, variables)
+	if e != nil {
+		log.Fatal(e)
 	}
 
 	fmt.Println(output)

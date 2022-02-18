@@ -51,3 +51,7 @@ func (v *BaseDokafileVisitor) VisitIf_expression(ctx *If_expressionContext) inte
 func (v *BaseDokafileVisitor) VisitValue(ctx *ValueContext) interface{} {
 	return v.VisitChildren(ctx)
 }
+
+func (v *BaseDokafileVisitor) VisitInclude_instruction(ctx *Include_instructionContext) interface{} {
+	return v.VisitChildren(ctx)
+}

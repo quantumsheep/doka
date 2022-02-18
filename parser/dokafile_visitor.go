@@ -40,4 +40,7 @@ type DokafileVisitor interface {
 
 	// Visit a parse tree produced by DokafileParser#value.
 	VisitValue(ctx *ValueContext) interface{}
+
+	// Visit a parse tree produced by DokafileParser#include_instruction.
+	VisitInclude_instruction(ctx *Include_instructionContext) interface{}
 }

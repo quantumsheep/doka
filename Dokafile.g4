@@ -2,10 +2,11 @@ grammar Dokafile;
 
 translation: instructions EOF;
 
-instructions: ( Indent? instruction '\n')*;
+instructions: ( Spacing? instruction '\n')*;
 
 instruction:
 	if_instruction
+	| include_instruction
 	| native_instruction
 	| nothing
 	| comment;
@@ -17,20 +18,23 @@ comment: Comment;
 native_instruction: NativeInstructionCall;
 
 if_instruction:
-	If ' '+ if_expression '\n' instructions (
-		Indent? elif_instruction
-	)? Indent? End;
+	If Spacing if_expression '\n' instructions (
+		Spacing? elif_instruction
+	)? Spacing? End;
 
 elif_instruction:
-	Elif ' '+ if_expression '\n' instructions (
-		Indent? (elif_instruction | else_instruction)
+	Elif Spacing if_expression '\n' instructions (
+		Spacing? (elif_instruction | else_instruction)
 	)?;
 
 else_instruction: Else '\n' instructions;
 
-if_expression: value ' '* (OperatorEq | OperatorNe) ' '* value;
+if_expression:
+	value Spacing? (OperatorEq | OperatorNe) Spacing? value;
 
 value: StringLiteral | Variable;
+
+include_instruction: Include Spacing StringLiteral;
 
 If: '!IF';
 Else: '!ELSE';
@@ -42,12 +46,16 @@ OperatorNe: '!=';
 
 Variable: '$' Name;
 
+Include: '!INCLUDE';
+
 NativeInstructionCall:
-	NativeInstruction ' ' NativeInstructionCallChar*;
+	NativeInstruction Spacing (~ [\r\n] | '\\\n')*;
 
-fragment NativeInstructionCallChar: ~ [\r\n] | '\\\n';
+StringLiteral: ('"' StringChar* '"') | ('\'' CharChar+ '\'');
 
-Indent: [ \t]+;
+Comment: Spacing? '#' (~ [\r\n])*;
+
+Spacing: [ \t]+;
 
 fragment NativeInstruction:
 	'FROM'
@@ -67,10 +75,6 @@ fragment NativeInstruction:
 	| 'RUN'
 	| 'CMD'
 	| 'ENTRYPOINT';
-
-StringLiteral: ('"' StringChar* '"') | '\'' CharChar+ '\'';
-
-Comment: '#' (~ [\r\n])*;
 
 fragment Name: [a-zA-Z_] [a-zA-Z0-9_]*;
 
