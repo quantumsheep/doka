@@ -35,6 +35,25 @@ END
 
 You **can** nest `!IF` instructions if wanted.
 
+## `!INCLUDE` preprocessor
+You can include other Dokafiles and Dockerfiles using `!INCLUDE` preprocessor.
+```dockerfile
+# Dokafile.a
+FROM ubuntu:18.04
+
+!INCLUDE "./Dokafile.deps"
+
+COPY myapp .
+CMD ["./myapp"]
+```
+```dockerfile
+# Dokafile.deps
+RUN apt-get update && apt-get install -y curl
+```
+
+You **can** nest `!INCLUDE` instructions in included files.
+`!INCLUDE` can be used inside `!IF` blocks.
+
 # Examples
 **Optionally installing `curl`**
 ```dockerfile
@@ -47,6 +66,6 @@ WORKDIR /home/ubuntu
     RUN apt-get update && apt-get install -y curl
 !END
 
-COPY main.py /usr
-CMD ["python3", "main.py"]
+COPY myapp .
+CMD ["./myapp"]
 ```
