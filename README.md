@@ -19,18 +19,30 @@ Variables are called using `$my_var` syntax in Dokafiles.
 
 By default, `os` and `arch` variables are set depending on the current system.
 
-## `!IF` preprocessor
-`!IF` preprocessor is used to conditionally include or not instructions. Right now you can use it to compare variables and values between them.
+## `!IF`, `!ELIF` and `!ELSE` preprocessors
+`!IF` and `!ELIF` preprocessors can be used to conditionally include or not instructions. Right now you can use it to compare variables and values between them.
 
+**Compare to string:**
 ```dockerfile
 !IF $my_var == "value1"
     RUN echo "Hi there"
-END
+!END
 ```
+**Compare to another variable:**
 ```dockerfile
 !IF $var1 != $var2
     RUN echo "var1 is not equal to var2"
-END
+!END
+```
+**`!ELIF` and `!ELSE`:**
+```dockerfile
+!IF $my_var == "value1"
+    RUN echo "1"
+!ELIF $my_var == "value2"
+    RUN echo "2"
+!ELSE
+    RUN echo "3"
+!END
 ```
 
 You **can** nest `!IF` instructions if wanted.
