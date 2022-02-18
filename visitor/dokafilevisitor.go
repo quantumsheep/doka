@@ -88,9 +88,11 @@ func (v *DokafileVisitor) VisitIf_instruction(ctx *parser.If_instructionContext)
 
 	if expression {
 		return v.VisitInstructions(ctx.Instructions().(*parser.InstructionsContext))
+	} else if child := ctx.Elif_instruction(); child != nil {
+		return v.VisitElif_instruction(child.(*parser.Elif_instructionContext))
 	}
 
-	return v.VisitElif_instruction(ctx.Elif_instruction().(*parser.Elif_instructionContext))
+	return nil
 }
 
 func (v *DokafileVisitor) VisitElif_instruction(ctx *parser.Elif_instructionContext) error {
